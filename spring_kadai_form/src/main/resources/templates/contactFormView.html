@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>spring boot課題</title>
+</head>
+
+<body>
+
+  <h2>お問い合わせフォーム</h2>
+
+  <form th:action="@{/contact/confirm}" method="post" th:object="${contactForm}">
+
+    <label for="name">お名前</label>
+    <input type="text" id="name" th:field="*{name}"><br>
+    <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+
+    <label for="email">メールアドレス</label>
+    <input type="text" id="email" th:field="*{email}"><br>
+    <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+
+    <label for="message">お問い合わせ内容</label>
+    <textarea id="message" cols="30" rows="10" th:field="*{message}"></textarea><br>
+    <div th:if="${#fields.hasErrors('message')}" th:errors="*{message}"></div>
+
+    <div><button type="submit">送信</button></div>
+
+    <div th:if="${message}">
+      <p th:text="${message}"></p>
+    </div>
+
+  </form>
+
+</body>
+</html>
